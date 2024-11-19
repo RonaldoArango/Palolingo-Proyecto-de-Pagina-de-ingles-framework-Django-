@@ -1,0 +1,223 @@
+*{
+    margin:0; padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: capitalize;
+    text-decoration: none;
+}
+
+body{
+    min-height: 100vh;
+    background-image: url(../images/BG.jpg);
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    position: fixed;
+    top: 0; left: 0; right:0;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 1);
+    padding: 20px 7%;
+    display: flex;
+    z-index: 1000;
+    justify-content:space-between;
+
+}
+
+.Logo-palo{
+    padding-top: 20px;
+    padding-right: -20%;
+}
+header .Logo{
+    font-weight: bolder;
+    font-size: 25px;
+    color:#333;
+    text-align: left;
+    padding-top: 20px;
+    padding-left: -20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+header .navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+
+}
+
+header .navbar ul li {
+    position: relative;
+}
+
+
+header .navbar ul li a{
+    font-size: 20px;
+    padding: 20px;
+    color: #333;
+    display: block;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+header .navbar ul li a:hover{
+    background: #333;
+    color: #fff;
+}
+
+header h2{
+    color: black;
+    padding-top: 20px;
+    
+}
+
+header .navbar ul li ul{
+    position: absolute;
+    left: 0;
+    width: 200px;
+    background: #fff;
+    display: none;
+}
+
+header .navbar ul li ul li{
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 1);
+}
+
+header .navbar ul li ul li a{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+header .navbar ul li:hover > ul{
+    display: initial;
+}
+
+#menu-bar{
+    display:none;
+}
+
+header label{
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    display: none;
+}
+
+.acceso-button {
+    display: flex;
+    padding: 1rem 2rem; 
+    border: 10%; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 20px;
+    justify-content: right;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+    color: black;
+    text-align: center;
+    padding: 20px;
+}
+h1 {
+    font-size: 3em;
+    font-weight: 600;
+}
+p {
+    font-size: 1.2em;
+}
+.container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 30px;
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    color: #333;
+}
+.container h2 {
+    color: #000000;
+}
+input[type="file"], button, input[type="submit"] {
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+input[type="file"] {
+    display: block;
+    margin: 10px auto;
+}
+button {
+    display: block;
+    margin: 10px auto;
+}
+button:hover, input[type="submit"]:hover {
+    background-color: #45a500;
+}
+#audioElement {
+    margin-top: 20px;
+}
+
+main{
+    padding-top: 7%;
+}
+
+main h1{
+    padding-bottom: 2%;
+}
+main p{
+    padding-bottom: 2%;
+}
+
+.avatar-icon {
+    width: 25px;  
+    height: 25px; 
+    border-radius: 0 !important;
+    margin-right: 10px; 
+}
+
+.cerrar-sesion-button {
+    padding: 10px; /* Ajusta el padding del botón para que sea más grande */
+    border-radius: 5px; /* Mantén el borde redondeado */
+    background-color: #f44336; /* Color del botón */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambia el cursor a mano */
+    width: 100%; /* Ocupar todo el ancho del menú */
+}
+
+.usuario-info {
+    position: relative; /* Para que el dropdown se posicione relativo a este contenedor */
+}
+
+.dropdown {
+    position: absolute; /* Asegúrate de que se posicione correctamente */
+    background: #fff; 
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    right: 0; 
+    margin-top: 0; /* Elimina el margen superior para evitar el espacio en blanco */
+    display: none; 
+    z-index: 1000; 
+    padding: 0; /* Elimina el padding si es necesario */
+}
+
+
+.arrow {
+    font-size: 12px; /* Ajusta el tamaño según necesites */
+    margin-left: 5px; /* Espacio entre el texto y la flecha */
+    cursor: pointer; /* Cambia el cursor a mano */
+    transition: transform 0.3s; /* Para animar la rotación */
+}
+
+.arrow.rotate {
+    transform: rotate(180deg); /* Rota la flecha al hacer clic */
+}

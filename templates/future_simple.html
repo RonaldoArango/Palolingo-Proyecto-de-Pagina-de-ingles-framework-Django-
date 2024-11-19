@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Future Simple</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRoc7bJB8ev3+klD2iihEn5/Cn1UKoaPhvRUh4fjk" crossorigin="anonymous"></script>
+    <style>
+        /* Fondo animado que cambia de color */
+        body {
+            background-color: #87CEEB; /* Celeste */
+            animation: gradientBackground 10s ease infinite;
+        }
+
+        @keyframes gradientBackground {
+            0% { background-color: #87CEEB; }
+            50% { background-color: #B0E0E6; }
+            100% { background-color: #87CEEB; }
+        }
+
+        /* Bloques de ejemplo con colores que cambian */
+        .example-block {
+            background-color: #ADD8E6;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 1s ease;
+        }
+
+        .example-block:hover {
+            background-color: #6495ED; /* Cambia a azul más oscuro al pasar el cursor */
+        }
+
+        /* Estilo para el bloque de texto con la explicación */
+        .explanation-block {
+            background-color: #f0f8ff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .explanation-block h4 {
+            color: #007bff;
+        }
+
+        /* Diseño del botón "Aprendido" */
+        #aprendidoBtn {
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        #aprendidoBtn.btn-success {
+            background-color: #28a745 !important;
+            color: white;
+        }
+
+        /* Mejoras de espaciado y tamaños */
+        .btn-outline-success {
+            font-size: 1.2em;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-4">
+        <h1 class="text-center mb-4">Future Simple</h1>
+        
+        <!-- Bloque con la explicación resumida -->
+        <div class="explanation-block">
+            <p><strong>El Future Simple</strong> se utiliza para hablar de acciones que ocurrirán en el futuro. Se forma con el verbo auxiliar "will" seguido del verbo en su forma base. Es uno de los tiempos verbales más simples de aprender y se usa para hacer predicciones, promesas, decisiones espontáneas, y planes futuros.</p>
+            
+            <h4>Usos del Future Simple:</h4>
+            <ul>
+                <li><strong>Predicciones:</strong> Se usa para hablar de lo que creemos que ocurrirá en el futuro. Ejemplo: <em>"It will rain tomorrow."</em> (Lloverá mañana.)</li>
+                <li><strong>Decisiones espontáneas:</strong> Se utiliza cuando tomamos decisiones en el momento. Ejemplo: <em>"I’ll help you with that."</em> (Te ayudaré con eso.)</li>
+                <li><strong>Promesas:</strong> Para hacer promesas o compromisos. Ejemplo: <em>"I will call you later."</em> (Te llamaré más tarde.)</li>
+                <li><strong>Planes futuros:</strong> Aunque también se usa "going to" para hablar de planes, "will" es común para expresar decisiones futuras. Ejemplo: <em>"I will travel to Japan next year."</em> (Viajaré a Japón el próximo año.)</li>
+            </ul>
+            
+            <h4>Formación del Future Simple:</h4>
+            <ul>
+                <li><strong>Afirmativa:</strong> Sujeto + will + verbo base. Ejemplo: <em>"I will study tonight."</em></li>
+                <li><strong>Negativa:</strong> Sujeto + will + not + verbo base. Ejemplo: <em>"I will not go to the party."</em></li>
+                <li><strong>Interrogativa:</strong> Will + sujeto + verbo base? Ejemplo: <em>"Will you help me?"</em></li>
+            </ul>
+
+            <h4>Pautas clave:</h4>
+            <ul>
+                <li>El verbo "will" no cambia en ningún caso.</li>
+                <li>La forma contraída de "will" es "’ll". Ejemplo: "I’ll" en lugar de "I will".</li>
+                <li>Recuerda que la negación se forma con "will not" o su forma contraída "won’t".</li>
+            </ul>
+
+            <p>El Future Simple es esencial para hablar de planes, decisiones y predicciones sobre el futuro en inglés.</p>
+        </div>
+
+        <!-- Ejemplos en bloques con colores que cambian -->
+        <h3 class="mb-3">Ejemplos:</h3>
+        <ul>
+            <li class="example-block">I will study tomorrow.</li>
+            <li class="example-block">She will go to the concert next week.</li>
+            <li class="example-block">They will travel to Paris next year.</li>
+            <li class="example-block">We will eat at that restaurant tonight.</li>
+            <li class="example-block">He will call me when he arrives.</li>
+            <li class="example-block">The weather will be sunny tomorrow.</li>
+            <li class="example-block">I’ll buy the tickets for the movie.</li>
+            <li class="example-block">You will enjoy this book.</li>
+            <li class="example-block">I will not be able to attend the meeting.</li>
+            <li class="example-block">Will they come to the party?</li>
+        </ul>
+
+        <!-- Formulario para marcar como aprendido -->
+        <form id="aprendidoForm" method="post" action="{% url 'marcar_aprendido' 'future_simple' %}">
+            {% csrf_token %}
+            <button id="aprendidoBtn" class="btn btn-outline-success position-relative">
+                Aprendido <span id="aprendidoIcon" class="ms-1">{% if aprendido %}✔️{% endif %}</span>
+            </button>
+        </form>
+
+        <!-- Enlace para regresar a la lista de temas -->
+        <a href="{% url 'temas' %}" class="btn btn-secondary mt-3">Volver a los temas</a>
+    </div>
+
+    <script>
+        // AJAX para actualizar el estado de "Aprendido" sin recargar la página
+        $(document).ready(function() {
+            $('#aprendidoForm').submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        const icon = $('#aprendidoIcon');
+                        if (icon.text() === '✔️') {
+                            icon.text('');
+                            $('#aprendidoBtn').removeClass('btn-success').addClass('btn-outline-success');
+                        } else {
+                            icon.text('✔️');
+                            $('#aprendidoBtn').removeClass('btn-outline-success').addClass('btn-success');
+                        }
+                    },
+                    error: function() {
+                        alert("Ocurrió un error, intenta nuevamente.");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+

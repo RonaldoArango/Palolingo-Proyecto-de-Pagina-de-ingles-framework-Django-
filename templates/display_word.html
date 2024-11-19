@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diccionario</title>
+    <!-- Enlace a Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff6b6b, #f9e26b); /* Fondo de gradiente */
+            color: #343a40; /* Color del texto */
+            font-family: 'Arial', sans-serif; /* Fuente elegante */
+            text-align: center; /* Centrar texto */
+            padding: 50px 0; /* Espaciado superior e inferior */
+        }
+        h1 {
+            font-size: 2.5rem; /* Tamaño de fuente grande para el encabezado */
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8); /* Sombra en el texto */
+            margin-bottom: 20px; /* Margen inferior */
+        }
+        p {
+            font-size: 1.2rem; /* Tamaño de fuente mediano */
+            margin: 15px 0; /* Margen superior e inferior */
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad */
+            border-radius: 15px; /* Bordes redondeados */
+            padding: 30px; /* Espaciado interno */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra alrededor del contenedor */
+        }
+        .btn-back {
+            margin-top: 20px; /* Margen superior para el botón */
+            background-color: #007bff; /* Color de fondo del botón */
+            color: white; /* Color del texto del botón */
+            border-radius: 20px; /* Bordes redondeados para el botón */
+        }
+        .btn-back:hover {
+            background-color: #0056b3; /* Color de fondo al pasar el ratón */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Meaning of "{{ word }}"</h1>
+        <p><strong>Definition:</strong> {{ meaning }}</p>
+        <p><strong>Synonyms:</strong> {{ synonyms|join:", " }}</p>
+        <a href="{% url 'input_word' %}" class="btn btn-back">Regresar</a>
+    </div>
+
+    <!-- Enlace a jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Enlace a Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // Animación para el botón de regresar
+            $('.btn-back').on('mouseover', function() {
+                $(this).css('transform', 'scale(1.05)');
+            }).on('mouseout', function() {
+                $(this).css('transform', 'scale(1)');
+            });
+        });
+    </script>
+</body>
+</html>

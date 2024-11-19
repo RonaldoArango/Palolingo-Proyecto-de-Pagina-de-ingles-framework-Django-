@@ -1,0 +1,124 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir y Grabar Audio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/diseño.css' %}">
+
+</head>
+<body>
+    <header>
+        <div>
+            <img src="../static/images/meme.jpg" alt="#" height=60px>
+            <a href="{% url 'home' %}" class="Logo">Palolingo</a>
+    
+            <input type="checkbox" id="menu-bar">
+            <label for="menu-bar">Menu</label>
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="{% url 'temas' %}">Curso</a></li>
+                <li><a href="{% url 'foro' %}">Foro</a></li>
+                <li><a href="#">Recurso +</a>
+                    <ul>
+                        <li><a href="{% url 'correct_text' %}">Corrector de textos</a></li>
+                        <li><a href="{% url 'pagina' %}">Cnvertir textos a Audio</a></li>
+                        <li><a href="{% url 'input_word' %}">Diccionario</a></li>
+                    </ul>
+                </li>
+                <li></li>
+            </ul>
+        </nav>
+
+        <div class="usuario-info">
+            {% if user.socialaccount_set.exists %}
+                {% for social_account in user.socialaccount_set.all %}
+                    <img src="{{ social_account.get_avatar_url|default:'/path/to/default/avatar.png' }}" alt="Avatar" class="avatar-icon" style="width: 25px; height: 25px;">
+                {% endfor %}
+            {% endif %}
+            <span>Bienvenido, {{ user.username }}</span>
+            <span class="arrow" id="toggle-menu">▼</span> <!-- Flecha aquí -->
+            <div class="dropdown" id="dropdown" style="display:none;">
+                <button class="cerrar-sesion-button"><a href="{% url 'logout' %}" style="color: white; text-decoration: none;">Cerrar sesión</a></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <h1>Sube o Graba tu Audio</h1>
+        <p>Sube un archivo de audio para que lo transcribamos.</p>
+        
+        <!-- Formulario para subir audio -->
+        <h2>Subir Audio</h2>
+        <form id="audioUploadForm" method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+            <input type="file" name="audiofile" accept="audio/*" required>
+            <input type="submit" value="Subir Audio">
+        </form>
+        
+
+        <!-- Mostrar la transcripción si está disponible -->
+        <h2>Texto Transcrito:</h2>
+        <div id="transcripcion" style="border: 1px solid #ddd; padding: 10px; margin-top: 10px;">
+            <!-- Aquí aparecerá el resultado del reconocimiento de voz -->
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        
+        document.getElementById("toggle-menu").addEventListener("click", function(event) {
+            event.stopPropagation(); // Evitar que el clic se propague al documento
+            const dropdown = document.getElementById("dropdown");
+            const arrow = this;
+
+            // Cambia la visibilidad del menú
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+    
+            // Rota la flecha
+            arrow.classList.toggle("rotate");
+        });
+
+        // Cerrar el menú si se hace clic fuera de él
+        window.onclick = function(event) {
+            const dropdown = document.getElementById("dropdown");
+            const arrow = document.getElementById("toggle-menu");
+    
+            if (dropdown.style.display === 'block' && !event.target.matches('#toggle-menu')) {
+                dropdown.style.display = 'none'; // Oculta el menú si se hace clic fuera
+                arrow.classList.remove("rotate"); // Restaura la posición de la flecha
+            }
+        };      
+
+
+        $(document).ready(function(){
+            $('#audioUploadForm').on('submit', function(event){
+                event.preventDefault(); // Evita la recarga de la página
+    
+                var formData = new FormData(this); // Crea un FormData para enviar el archivo
+                $.ajax({
+                    url: "{% url 'reconocer_audio' %}",  // La URL a la que se envía el archivo
+                    type: 'POST',
+                    data: formData,
+                    processData: false,  // Necesario para enviar el archivo
+                    contentType: false,  // Necesario para enviar el archivo
+                    success: function(response) {
+                        // Actualizar el div con la transcripción recibida del servidor
+                        $('#transcripcion').text(response.transcripcion);
+                    },
+                    error: function(xhr, status, error) {
+                        // Muestra un error si algo falla
+                        alert("Hubo un error al procesar el archivo: " + error);
+                    }
+                });
+            });
+        });
+    </script>
+    
+
+ 

@@ -1,0 +1,258 @@
+#USAR  python manage.py loaddata quiz_data.yaml PARA SUBIR QUIZES
+
+
+---
+- model: app1.quiz
+  pk: 1
+  fields:
+    name: "EXAMEN DE ENTRADA"
+
+- model: app1.question
+  pk: 1
+  fields:
+    quiz: 1
+    text: "¿Cómo se dice 'hola' en inglés?"
+
+- model: app1.answer
+  pk: 1
+  fields:
+    question: 1
+    text: "hello"
+    is_correct: true
+- model: app1.answer
+  pk: 2
+  fields:
+    question: 1
+    text: "how"
+    is_correct: false
+- model: app1.answer
+  pk: 3
+  fields:
+    question: 1
+    text: "hi"
+    is_correct: true
+
+- model: app1.question
+  pk: 2
+  fields:
+    quiz: 1
+    text: "¿Cómo se dice 'gracias' en inglés?"
+
+- model: app1.answer
+  pk: 4
+  fields:
+    question: 2
+    text: "thank you"
+    is_correct: true
+- model: app1.answer
+  pk: 5
+  fields:
+    question: 2
+    text: "goodbye"
+    is_correct: false
+- model: app1.answer
+  pk: 6
+  fields:
+    question: 2
+    text: "please"
+    is_correct: false
+
+- model: app1.question
+  pk: 3
+  fields:
+    quiz: 1
+    text: "Completa la siguiente frase: '___ old are you?'"
+
+- model: app1.answer
+  pk: 7
+  fields:
+    question: 3
+    text: "How"
+    is_correct: true
+- model: app1.answer
+  pk: 8
+  fields:
+    question: 3
+    text: "Where"
+    is_correct: false
+- model: app1.answer
+  pk: 9
+  fields:
+    question: 3
+    text: "When"
+    is_correct: false
+
+- model: app1.question
+  pk: 4
+  fields:
+    quiz: 1
+    text: "¿Cómo se dice 'perro' en inglés?"
+
+- model: app1.answer
+  pk: 10
+  fields:
+    question: 4
+    text: "dog"
+    is_correct: true
+- model: app1.answer
+  pk: 11
+  fields:
+    question: 4
+    text: "cat"
+    is_correct: false
+- model: app1.answer
+  pk: 12
+  fields:
+    question: 4
+    text: "fish"
+    is_correct: false
+
+- model: app1.question
+  pk: 5
+  fields:
+    quiz: 1
+    text: "Completa la siguiente frase: 'Where ___ you from?'"
+
+- model: app1.answer
+  pk: 13
+  fields:
+    question: 5
+    text: "are"
+    is_correct: true
+- model: app1.answer
+  pk: 14
+  fields:
+    question: 5
+    text: "is"
+    is_correct: false
+- model: app1.answer
+  pk: 15
+  fields:
+    question: 5
+    text: "am"
+    is_correct: false
+
+- model: app1.question
+  pk: 6
+  fields:
+    quiz: 1
+    text: "¿Cómo se dice 'libro' en inglés?"
+
+- model: app1.answer
+  pk: 16
+  fields:
+    question: 6
+    text: "book"
+    is_correct: true
+- model: app1.answer
+  pk: 17
+  fields:
+    question: 6
+    text: "pen"
+    is_correct: false
+- model: app1.answer
+  pk: 18
+  fields:
+    question: 6
+    text: "notebook"
+    is_correct: false
+
+- model: app1.question
+  pk: 7
+  fields:
+    quiz: 1
+    text: "¿Cómo se dice 'escuela' en inglés?"
+
+- model: app1.answer
+  pk: 19
+  fields:
+    question: 7
+    text: "school"
+    is_correct: true
+- model: app1.answer
+  pk: 20
+  fields:
+    question: 7
+    text: "house"
+    is_correct: false
+- model: app1.answer
+  pk: 21
+  fields:
+    question: 7
+    text: "work"
+    is_correct: false
+
+- model: app1.question
+  pk: 8
+  fields:
+    quiz: 1
+    text: "Completa la frase: 'She is a ___ teacher.'"
+
+- model: app1.answer
+  pk: 22
+  fields:
+    question: 8
+    text: "good"
+    is_correct: true
+- model: app1.answer
+  pk: 23
+  fields:
+    question: 8
+    text: "well"
+    is_correct: false
+- model: app1.answer
+  pk: 24
+  fields:
+    question: 8
+    text: "bad"
+    is_correct: false
+
+- model: app1.question
+  pk: 9
+  fields:
+    quiz: 1
+    text: "¿Cómo se dice 'grande' en inglés?"
+
+- model: app1.answer
+  pk: 25
+  fields:
+    question: 9
+    text: "big"
+    is_correct: true
+- model: app1.answer
+  pk: 26
+  fields:
+    question: 9
+    text: "small"
+    is_correct: false
+- model: app1.answer
+  pk: 27
+  fields:
+    question: 9
+    text: "large"
+    is_correct: true
+
+- model: app1.question
+  pk: 10
+  fields:
+    quiz: 1
+    text: "Completa la frase: 'I ___ a student.'"
+
+- model: app1.answer
+  pk: 28
+  fields:
+    question: 10
+    text: "am"
+    is_correct: true
+- model: app1.answer
+  pk: 29
+  fields:
+    question: 10
+    text: "is"
+    is_correct: false
+- model: app1.answer
+  pk: 30
+  fields:
+    question: 10
+    text: "are"
+    is_correct: false

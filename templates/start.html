@@ -1,0 +1,161 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Iniciar el examen</title>
+  <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href="{% static '/css/Inicio.css'%}">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f0f0f0;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+      padding-top: 200px;
+    }
+
+    #topic-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin: auto;
+      width: 50%;
+    }
+
+    #topic-list {
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    #question-form {
+      padding: 20px;
+    }
+
+    .option{
+      border-radius: 10px;
+    }
+
+    .option input[type="radio"] {
+      display: none; /* Hide the radio button */
+    }
+
+    .option label {
+      display: block;
+      padding: 10px 20px;
+      background-color: #eeeeee;
+      border-radius: 5px;
+      margin: 5px 0;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .option label:hover {
+      background-color: #c9c9c9;
+    }
+
+    .option input[type="radio"]:checked + label {
+      background-color: #818181;
+      color: #fff;
+    }
+
+    #heading-text {
+      text-align: center;
+    }
+
+    .btn {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease-out;
+      display: block;
+      margin: 20px auto;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<header>
+  <div>
+      <img src="../static/images/meme.jpg" alt="#" height=60px>
+      <a href="{% url 'home' %}" class="Logo">Palolingo</a>
+
+      <input type="checkbox" id="menu-bar">
+      <label for="menu-bar">Menu</label>
+  </div>
+
+  <nav class="navbar" style="background-color: #f8f9fa; padding: 10px;">
+      <ul>
+          <li><a href="{% url 'temas' %}">Curso</a></li>
+          <li><a href="{% url 'foro' %}">Foro</a></li>
+          <li><a href="#">Recurso +</a>
+              <ul>
+                  <li><a href="{% url 'correct_text' %}">Corrector de textos</a></li>
+                  <li><a href="{% url 'pagina' %}">Convertir de audio a texto</a></li>
+                  <li><a href="{% url 'input_word' %}">Diccionario</a></li>
+              </ul>
+          </li>
+          <li></li>
+      </ul>
+  </nav>
+
+  <div class="usuario-info">
+      {% if user.socialaccount_set.exists %}
+          {% for social_account in user.socialaccount_set.all %}
+              <img src="{{ social_account.get_avatar_url|default:'/path/to/default/avatar.png' }}" alt="Avatar" class="avatar-icon" style="width: 25px; height: 25px;">
+          {% endfor %}
+      {% endif %}
+      <span>Bienvenido, {{ user.username }}</span>
+      <span class="arrow" id="toggle-menu">▼</span> <!-- Flecha aquí -->
+      <div class="dropdown" id="dropdown" style="display:none;">
+          <button class="cerrar-sesion-button"><a href="{% url 'logout' %}" style="color: white; text-decoration: none;">Cerrar sesión</a></button>
+      </div>
+  </div>
+  
+  
+  
+</header>
+<body>
+
+<form id="topic-container" hx-post="{% url 'get-questions' %}/start">
+  {% csrf_token %}
+  <h2 id="heading-text">
+    De que te gustaria que tratase el examen?
+  </h2>
+  <div id="topic-list">
+
+    <p>Selecciona un tema , por favor</p>
+
+    <ol style="list-style-type: none;">
+
+      {% for topic in topics %}
+      <li class="option">
+        <input type="radio" id="topic-{{ forloop.counter0 }}" value="{{ topic.id }}" name="quiz_id" required>
+        <label for="topic-{{ forloop.counter0 }}">{{ topic.name }} ({{ topic.questions_count }} questions)</label>
+      </li>
+      {% endfor %}
+
+      {% if not topics %}
+      <li>Ese examen no esta disponible, seguro que lo añadiste la base de datos?</li>
+      {% endif %}
+
+    </ol>
+
+    <button class="btn" type="submit">Iniciar examen</button>
+  </div>
+</form>
+
+
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Present Continuous</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRoc7bJB8ev3+klD2iihEn5/Cn1UKoaPhvRUh4fjk" crossorigin="anonymous"></script>
+    <style>
+        /* Fondo animado que cambia de color */
+        body {
+            background-color: #FFDEAD; 
+            animation: gradientBackground 10s ease infinite;
+        }
+
+        @keyframes gradientBackground {
+            0% { background-color: #FFDEAD; }
+            50% { background-color: #F5DEB3; }
+            100% { background-color: #FFDEAD; }
+        }
+
+        /* Bloques de ejemplo con colores que cambian */
+        .example-block {
+            background-color: #FFE4B5;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background-color 1s ease;
+        }
+
+        .example-block:hover {
+            background-color: #D2691E; /* Cambia a un color más oscuro al pasar el cursor */
+        }
+
+        /* Estilo para el bloque de texto con la explicación */
+        .explanation-block {
+            background-color: #FFF8DC;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .explanation-block h4 {
+            color: #8B4513;
+        }
+
+        /* Diseño del botón "Aprendido" */
+        #aprendidoBtn {
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        #aprendidoBtn.btn-success {
+            background-color: #28a745 !important;
+            color: white;
+        }
+
+        /* Mejoras de espaciado y tamaños */
+        .btn-outline-success {
+            font-size: 1.2em;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-4">
+        <h1 class="text-center mb-4">Present Continuous</h1>
+        
+        
+        <div class="explanation-block">
+            <p><strong>El Present Continuous</strong> se usa para describir acciones que están ocurriendo en el momento en que se habla, o para planes futuros. Se forma con el verbo "to be" (am, is, are) en el presente y el verbo principal en su forma de gerundio (con -ing).</p>
+            
+            <h4>Usos del Present Continuous:</h4>
+            <ul>
+                <li><strong>Acciones que están sucediendo en el momento de hablar:</strong> Ejemplo: <em>"I am reading a book right now."</em> (Estoy leyendo un libro ahora mismo.)</li>
+                <li><strong>Acciones que ocurrirán en el futuro cercano:</strong> Ejemplo: <em>"I am meeting my friend tomorrow."</em> (Me reuniré con mi amigo mañana.)</li>
+                <li><strong>Acciones que ocurren de forma temporal:</strong> Ejemplo: <em>"She is studying English this semester."</em> (Ella está estudiando inglés este semestre.)</li>
+            </ul>
+            
+            <h4>Formación del Present Continuous:</h4>
+            <ul>
+                <li><strong>Afirmativa:</strong> Sujeto + am/is/are + verbo + ing. Ejemplo: <em>"He is playing football."</em></li>
+                <li><strong>Negativa:</strong> Sujeto + am/is/are + not + verbo + ing. Ejemplo: <em>"They are not working."</em></li>
+                <li><strong>Interrogativa:</strong> Am/Is/Are + sujeto + verbo + ing? Ejemplo: <em>"Is she reading a book?"</em></li>
+            </ul>
+
+            <h4>Pautas clave:</h4>
+            <ul>
+                <li>El verbo "to be" (am, is, are) se usa en el presente según el sujeto.</li>
+                <li>El verbo principal se usa en su forma de gerundio (-ing).</li>
+                <li>En la forma negativa se utiliza "not" después de "am", "is", o "are".</li>
+                <li>La forma interrogativa se invierte, comenzando con "Am/Is/Are" seguido del sujeto.</li>
+            </ul>
+
+            <p>El Present Continuous es esencial para hablar de lo que está sucediendo ahora o de planes futuros, y es uno de los tiempos verbales más usados en inglés.</p>
+        </div>
+
+       
+        <h3 class="mb-3">Ejemplos:</h3>
+        <ul>
+            <li class="example-block">I am studying right now.</li>
+            <li class="example-block">She is watching TV.</li>
+            <li class="example-block">We are having dinner at 8 PM.</li>
+            <li class="example-block">They are traveling to New York next week.</li>
+            <li class="example-block">I am working on a new project.</li>
+            <li class="example-block">Are you listening to me?</li>
+            <li class="example-block">He is not coming to the party tonight.</li>
+            <li class="example-block">We are meeting them tomorrow afternoon.</li>
+            <li class="example-block">Is she studying for the exam?</li>
+            <li class="example-block">They are not playing outside right now.</li>
+        </ul>
+
+        <!-- Formulario para marcar como aprendido -->
+        <form id="aprendidoForm" method="post" action="{% url 'marcar_aprendido' 'present_continuous' %}">
+            {% csrf_token %}
+            <button id="aprendidoBtn" class="btn btn-outline-success position-relative">
+                Aprendido <span id="aprendidoIcon" class="ms-1">{% if aprendido %}✔️{% endif %}</span>
+            </button>
+        </form>
+
+        <!-- Enlace para regresar a la lista de temas -->
+        <a href="{% url 'temas' %}" class="btn btn-secondary mt-3">Volver a los temas</a>
+    </div>
+
+    <script>
+       
+        $(document).ready(function() {
+            $('#aprendidoForm').submit(function(event) {
+                event.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        const icon = $('#aprendidoIcon');
+                        if (icon.text() === '✔️') {
+                            icon.text('');
+                            $('#aprendidoBtn').removeClass('btn-success').addClass('btn-outline-success');
+                        } else {
+                            icon.text('✔️');
+                            $('#aprendidoBtn').removeClass('btn-outline-success').addClass('btn-success');
+                        }
+                    },
+                    error: function() {
+                        alert("Ocurrió un error, intenta nuevamente.");
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

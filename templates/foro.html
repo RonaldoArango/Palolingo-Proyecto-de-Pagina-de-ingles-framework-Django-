@@ -1,0 +1,247 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palolingo Foro</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous"0>
+    <style>
+        .box{
+            border: 4px solid black;
+            margin: 0 auto;
+        }
+        *{
+    margin:0; padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: capitalize;
+    text-decoration: none;
+}
+
+body{
+    min-height: 100vh;
+    background-image: url(../images/BG.jpg);
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    position: fixed;
+    top: 0; left: 0; right:0;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 1);
+    padding: 20px 7%;
+    display: flex;
+    z-index: 1000;
+    justify-content:space-between;
+
+}
+
+header .Logo{
+    font-weight: bolder;
+    font-size: 25px;
+    color:#333;
+    text-align: left;
+    padding-top: 20px;
+    padding-left: -20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+header .navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+
+}
+
+header .navbar ul li {
+    position: relative;
+}
+
+
+header .navbar ul li a{
+    font-size: 20px;
+    padding: 20px;
+    color: #333;
+    display: block;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+header .navbar ul li a:hover{
+    background: #333;
+    color: #fff;
+}
+
+header .navbar ul li ul{
+    position: absolute;
+    left: 0;
+    width: 200px;
+    background: #fff;
+    display: none;
+}
+
+header .navbar ul li ul li{
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 1);
+}
+
+header .navbar ul li ul li a{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+header .navbar ul li:hover > ul{
+    display: initial;
+}
+
+#menu-bar{
+    display:none;
+}
+
+header label{
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    display: none;
+}
+
+.avatar-icon {
+    width: 25px;  
+    height: 25px; 
+    border-radius: 0 !important;
+    margin-right: 10px; 
+}
+
+.cerrar-sesion-button {
+    padding: 10px; /* Ajusta el padding del botón para que sea más grande */
+    border-radius: 5px; /* Mantén el borde redondeado */
+    background-color: #f44336; /* Color del botón */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambia el cursor a mano */
+    width: 100%; /* Ocupar todo el ancho del menú */
+}
+
+.usuario-info {
+    position: relative; /* Para que el dropdown se posicione relativo a este contenedor */
+}
+
+.dropdown {
+    position: absolute; /* Asegúrate de que se posicione correctamente */
+    background: #fff; 
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    right: 0; 
+    margin-top: 0; /* Elimina el margen superior para evitar el espacio en blanco */
+    display: none; 
+    z-index: 1000; 
+    padding: 0; /* Elimina el padding si es necesario */
+}
+
+
+.arrow {
+    font-size: 12px; /* Ajusta el tamaño según necesites */
+    margin-left: 5px; /* Espacio entre el texto y la flecha */
+    cursor: pointer; /* Cambia el cursor a mano */
+    transition: transform 0.3s; /* Para animar la rotación */
+}
+
+.arrow.rotate {
+    transform: rotate(180deg); /* Rota la flecha al hacer clic */
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="../static/images/meme.jpg" alt="#" height=60px>
+            <a href="{% url 'home' %}" class="Logo">Palolingo</a>
+    
+            <input type="checkbox" id="menu-bar">
+            <label for="menu-bar">Menu</label>
+        </div>
+
+        <nav class="navbar" style="background-color: #f8f9fa; padding: 10px;">
+            <ul>
+                <li><a href="{% url 'temas' %}">Curso</a></li>
+                <li><a href="{% url 'foro' %}">Foro</a></li>
+                <li><a href="#">Recurso +</a>
+                    <ul>
+                        <li><a href="{% url 'correct_text' %}">Corrector de textos</a></li>
+                        <li><a href="{% url 'pagina' %}">Convertir de audio a texto</a></li>
+                        <li><a href="{% url 'input_word' %}">Diccionario</a></li>
+                    </ul>
+                </li>
+                <li></li>
+            </ul>
+        </nav>
+
+        <div class="usuario-info">
+            {% if user.socialaccount_set.exists %}
+                {% for social_account in user.socialaccount_set.all %}
+                    <img src="{{ social_account.get_avatar_url|default:'/path/to/default/avatar.png' }}" alt="Avatar" class="avatar-icon" style="width: 25px; height: 25px;">
+                {% endfor %}
+            {% endif %}
+            <span>Bienvenido, {{ user.username }}</span>
+            <span class="arrow" id="toggle-menu">▼</span> <!-- Flecha aquí -->
+            <div class="dropdown" id="dropdown" style="display:none;">
+                <button class="cerrar-sesion-button"><a href="{% url 'logout' %}" style="color: white; text-decoration: none;">Cerrar sesión</a></button>
+            </div>
+        </div>
+        
+        
+        
+    </header>
+        <h2 class="jumbotron" style="margin-top: 170px;">
+            Foros activos actualmente: {{count}}
+            <form method="POST" action="{% url 'addInForum' %}">
+                {% csrf_token %}
+            <button class="btn btn-success" style="width:fit-content; padding: 4px; margin:10px;">Añadir un foro!</button>
+            </form>
+        </h2>
+            <div class="card-columns" style="padding: 10px; margin: 20px;"></div>
+            
+            
+            {%for forum in forums %}
+            
+                <div class="card box container">
+                    <br>
+                    <h5 class="card-title">
+                        <a href='{{forum.link}}'><h3>{{forum.topic}}</h3></a> 
+                        <div class="card-body container">
+                                <p>{{forum.description}}</p>
+                            </h5>
+                            <hr>
+                            <p> Autor(a):  {{forum.name}}</p>
+                            Correo:  {{forum.email}}
+                            <hr>     
+                            <h4>COMENTARIOS....</h4>
+                            {%for discuss in discussions%}
+                            {%for objs in discuss%}  
+                            {% if objs.forum == forum %}
+                               {{objs.discuss}}
+                               <br>
+                            {% endif %}
+                            {%endfor%}
+                            {%endfor%}
+                            <form method="POST" action="{% url 'addInDiscussion' %}">
+                                {% csrf_token %}
+                            <button class="btn btn-success" style="width:fit-content; padding: 4px; margin:10px;">Comentar</button>
+                            </form>
+                        </div>
+                </div>
+            </div>
+            <br>
+            
+            {%endfor%}
+          
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="{% static 'js/java.js' %}"></script>
+</body>
+</html>

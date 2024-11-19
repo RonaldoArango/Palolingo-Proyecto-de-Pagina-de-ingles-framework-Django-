@@ -1,0 +1,178 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #080710;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+}
+
+.background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.shape {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.shape:first-child {
+    background: linear-gradient(#1845ad, #23a2f6);
+    left: -80px;
+    top: -80px;
+}
+
+.shape:last-child {
+    background: linear-gradient(to right, #ff512f, #f09819);
+    right: -30px;
+    bottom: -80px;
+}
+
+form {
+    width: 400px;
+    background-color: rgba(255, 255, 255, 0.13);
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+    padding: 50px 35px;
+}
+
+form h3 {
+    font-size: 32px;
+    font-weight: 500;
+    text-align: center;
+    color: #ffffff;
+}
+
+label {
+    display: block;
+    margin-top: 30px;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+input {
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+input:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+button {
+    margin-top: 20px;
+    width: 100%;
+    background-color: #ffffff;
+    color: #080710;
+    padding: 15px 0;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #e0e0e0;
+}
+
+.or {
+    text-align: center;
+    margin: 20px 0;
+    color: #ffffff;
+}
+
+.social {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    justify-content: center;
+}
+.social a{
+    margin: 0 10px;
+}
+
+.social div {
+    background-color: rgba(255, 255, 255, 0.27);
+    color: #eaf0fb;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+    width: 48%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.social div:hover {
+    background-color: rgba(255, 255, 255, 0.47);
+}
+
+a {
+    color: #ffffff;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: none;
+}
+
+.messages {
+    color: #ff6666; 
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 16px;
+    padding: 10px;
+    border: 1px solid #ff6666; 
+    border-radius: 5px; 
+    background-color: rgba(255, 0, 0, 0.1); 
+}
+
+.social img {
+    width: 30px; 
+    height: 30px; 
+    object-fit: contain;
+    transition: transform 0.2s;
+}
+
+.social img:hover {
+    transform: scale(1.1); 
+}
+
+#cat {
+    position: absolute;
+    width: 100px; /* Ajusta el tamaño del gato según lo necesites */
+    top: 0; /* Altura desde la parte superior */
+    left: 0; /* Comienza desde la izquierda */
+}
+
+@keyframes walk {
+    0% {
+        left: 10%; /* Comienza fuera de la vista */
+    }
+    50% {
+        left: 80%; /* Termina a la derecha */
+    }
+    100% {
+        left: 10%; /* Vuelve a comenzar */
+    }
+}

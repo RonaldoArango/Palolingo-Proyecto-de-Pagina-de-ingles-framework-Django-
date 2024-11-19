@@ -1,0 +1,127 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diccionario</title>
+    <!-- Enlace a Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/Inicio.css'%}">
+    <style>
+        body {
+            /* Fondo animado con CSS */
+            background: linear-gradient(135deg, #ff6b6b, #ffdd6b); 
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite; /* Animación de fondo */
+            color: #fff; /* Color del texto */
+            padding-top: 200px;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            margin-top: 100px;
+            text-align: center; /* Centrar texto */
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro semi-transparente */
+            border-radius: 20px; /* Bordes redondeados */
+            padding: 40px; /* Espaciado interno */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Sombra alrededor del contenedor */
+        }
+        
+        h1 {
+            font-size: 2.5rem; /* Tamaño de fuente grande para el encabezado */
+            font-weight: bold; /* Negrita */
+        }
+        
+        .form-control {
+            border-radius: 20px; /* Bordes redondeados */
+            padding: 15px; /* Espaciado interno */
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+            color: #343a40; /* Color del texto del input */
+        }
+
+        .btn-submit {
+            border-radius: 20px; /* Bordes redondeados para el botón */
+            background-color: #007bff; /* Color de fondo del botón */
+            color: white; /* Color del texto del botón */
+            padding: 10px 20px; /* Espaciado interno */
+            transition: background-color 0.3s; /* Transición suave */
+        }
+        
+        .btn-submit:hover {
+            background-color: #0056b3; /* Color de fondo al pasar el ratón */
+            transform: scale(1.05); /* Animación de escala */
+        }
+    </style>
+</head>
+<header>
+        <div>
+            <img src="../static/images/meme.jpg" alt="#" height=60px>
+            <a href="{% url 'home' %}" class="Logo">Palolingo</a>
+    
+            <input type="checkbox" id="menu-bar">
+            <label for="menu-bar">Menu</label>
+        </div>
+
+        <nav class="navbar" style="background-color: #f8f9fa; padding: 10px;">
+            <ul>
+                <li><a href="{% url 'temas' %}">Curso</a></li>
+                <li><a href="{% url 'foro' %}">Foro</a></li>
+                <li><a href="#">Recurso +</a>
+                    <ul>
+                        <li><a href="{% url 'correct_text' %}">Corrector de textos</a></li>
+                        <li><a href="{% url 'pagina' %}">Convertir de audio a texto</a></li>
+                        <li><a href="{% url 'input_word' %}">Diccionario</a></li>
+                    </ul>
+                </li>
+                <li></li>
+            </ul>
+        </nav>
+
+        <div class="usuario-info">
+            {% if user.socialaccount_set.exists %}
+                {% for social_account in user.socialaccount_set.all %}
+                    <img src="{{ social_account.get_avatar_url|default:'/path/to/default/avatar.png' }}" alt="Avatar" class="avatar-icon" style="width: 25px; height: 25px;">
+                {% endfor %}
+            {% endif %}
+            <span>Bienvenido, {{ user.username }}</span>
+            <span class="arrow" id="toggle-menu">▼</span> <!-- Flecha aquí -->
+            <div class="dropdown" id="dropdown" style="display:none;">
+                <button class="cerrar-sesion-button"><a href="{% url 'logout' %}" style="color: white; text-decoration: none;">Cerrar sesión</a></button>
+            </div>
+        </div>
+        
+        
+        
+    </header>
+<body>
+    <div class="container">
+        <h1>Diccionario</h1>
+        <form method="POST" class="mt-4">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" class="form-control" name="word" placeholder="Ingrese una palabra" required>
+            </div>
+            <button type="submit" class="btn btn-submit">Buscar</button>
+        </form>
+    </div>
+
+    <!-- Enlace a jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <!-- Enlace a Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // Animación al enviar el formulario
+            $('form').on('submit', function() {
+                $(this).find('button').text('Buscando...').prop('disabled', true);
+            });
+        });
+    </script>
+</body>
+</html>

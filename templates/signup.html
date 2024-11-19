@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    {% load static %}
+    {% load socialaccount %}
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <img id="cat" src="{% static 'images/meme.jpg' %}" alt="Gato" />
+    <form method="post">
+        <h3>Crear Cuenta</h3>
+        {% csrf_token %} 
+
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <label for="username">Usuario</label>
+        <input type="text" id="username" name="username" placeholder="Pon tu usuario" required>
+        
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Tu email" required>
+
+        <label for="password">Contraseña</label>
+        <input type="password" id="password1" name="password1" placeholder="Crea una contraseña" required>
+        
+        <label for="password2">Confirmar contraseña</label>
+        <input type="password" id="password2" name="password2" placeholder="Confirma tu contraseña" required>
+
+        <button type="submit">Registrar</button>
+
+        <div class="link-container">
+            <a href="{% url 'login' %}">Ya tengo una cuenta</a>
+        </div>
+    </form>
+    <script src="{% static 'js/cat.js' %}"></script>
+</body>
+</html>

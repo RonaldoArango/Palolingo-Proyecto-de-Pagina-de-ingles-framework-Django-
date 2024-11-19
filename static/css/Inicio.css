@@ -1,0 +1,279 @@
+*{
+    margin:0; padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: capitalize;
+    text-decoration: none;
+}
+
+body{
+    min-height: 100vh;
+    background-image: url(../images/BG.jpg);
+    background-size: cover;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    position: fixed;
+    top: 0; left: 0; right:0;
+    background: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 1);
+    padding: 20px 7%;
+    display: flex;
+    z-index: 1000;
+    justify-content:space-between;
+
+}
+
+header .Logo{
+    font-weight: bolder;
+    font-size: 25px;
+    color:#333;
+    text-align: left;
+    padding-top: 20px;
+    padding-left: -20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+header .navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+
+}
+
+header .navbar ul li {
+    position: relative;
+}
+
+
+header .navbar ul li a{
+    font-size: 20px;
+    padding: 20px;
+    color: #333;
+    display: block;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+header .navbar ul li a:hover{
+    background: #333;
+    color: #fff;
+}
+
+header .navbar ul li ul{
+    position: absolute;
+    left: 0;
+    width: 200px;
+    background: #fff;
+    display: none;
+}
+
+header .navbar ul li ul li{
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 1);
+}
+
+header .navbar ul li ul li a{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+header .navbar ul li:hover > ul{
+    display: initial;
+}
+
+#menu-bar{
+    display:none;
+}
+
+header label{
+    font-size: 20px;
+    color: #333;
+    cursor: pointer;
+    display: none;
+}
+
+main{
+    padding-top: 15%;
+}
+
+main .info{
+    display: block;
+    align-items: center;
+    justify-content: center;
+}
+
+main .info h1{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-size-adjust: 600px;
+    color: darkslategrey;
+    text-align: center;
+
+}
+
+.Texto1{
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    padding-top: 3%;
+    padding-bottom: 2%;
+
+}
+
+.Texto2{
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    padding-top: 3%;
+}
+
+main .info button{
+    padding: 3px;
+    border-radius: 15%;
+    border-color: black;
+    background-color: goldenrod;
+    font-size: x-large;
+}
+
+article{
+    display: flex;
+    padding: 10%;
+}
+
+article .ventajas h1{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+article .ventajas li{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    padding: 10px;
+}
+
+section .test h3{
+    padding-top: 3%;
+    padding-bottom: 2%;
+}
+
+section .test button{
+    padding: 10px;
+    border-radius: 15%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: x-large;
+    background-color: goldenrod;
+}
+
+
+
+@media(max-width:991px){
+
+    header{
+        padding:20px
+    }
+    header{
+        display: initial;
+    }
+
+    header .navbar{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-top: 1px solid rgba(0, 0, 0, 1);
+        opacity: 0; /* Cambia la opacidad en lugar de ocultarlo completamente */
+        transition: opacity 0.3s ease; /* Agrega una transición suave */
+        display: none;
+    }
+    
+    header .navbar ul li{
+       width: 100%;
+    }
+    
+    header .navbar ul li a{
+        font-size: 20px;
+        padding: 20px;
+        color: #333;
+        display: block;
+    }
+    
+    header .navbar ul li a:hover{
+        background: #333;
+        color: #fff;
+    }
+    
+    header .navbar ul li ul{
+        position: relative;
+        width: 100%;
+    }
+    
+    header .navbar ul li ul li{
+       background: #eee;
+    }
+    
+    header .navbar ul li:hover > ul{
+        display: initial;
+    }
+    
+    #menu-bar:checked ~ .navbar{
+        display: initial;
+    }
+
+    #menu-bar:checked ~ .navbar{
+        opacity: 1; /* Muestra el menú cuando se activa el checkbox */
+    }
+
+    .acceso-button{
+        display: initial;
+    }
+
+    
+    #menu-bar{
+        display:initial;
+    }
+
+}
+
+.avatar-icon {
+    width: 25px;  
+    height: 25px; 
+    border-radius: 0 !important;
+    margin-right: 10px; 
+}
+
+.cerrar-sesion-button {
+    padding: 10px; /* Ajusta el padding del botón para que sea más grande */
+    border-radius: 5px; /* Mantén el borde redondeado */
+    background-color: #f44336; /* Color del botón */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambia el cursor a mano */
+    width: 100%; /* Ocupar todo el ancho del menú */
+}
+
+.usuario-info {
+    position: relative; /* Para que el dropdown se posicione relativo a este contenedor */
+}
+
+.dropdown {
+    position: absolute; /* Asegúrate de que se posicione correctamente */
+    background: #fff; 
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    right: 0; 
+    margin-top: 0; /* Elimina el margen superior para evitar el espacio en blanco */
+    display: none; 
+    z-index: 1000; 
+    padding: 0; /* Elimina el padding si es necesario */
+}
+
+
+.arrow {
+    font-size: 12px; /* Ajusta el tamaño según necesites */
+    margin-left: 5px; /* Espacio entre el texto y la flecha */
+    cursor: pointer; /* Cambia el cursor a mano */
+    transition: transform 0.3s; /* Para animar la rotación */
+}
+
+.arrow.rotate {
+    transform: rotate(180deg); /* Rota la flecha al hacer clic */
+}

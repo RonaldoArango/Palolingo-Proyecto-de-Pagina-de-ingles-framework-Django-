@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ topic.title }}</title>
+    <!-- Enlace a Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e9ecef;
+        }
+        .container {
+            margin-top: 30px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #555;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 5px;
+        }
+        p {
+            line-height: 1.6;
+            font-size: 18px;
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        button {
+            margin: 10px 5px;
+        }
+        .disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ topic.title }}</h1>
+        <p>{{ topic.content }}</p>
+
+        <!-- Sección de ejemplos -->
+        <h3>Ejemplos:</h3>
+        <ul class="list-unstyled">
+            {% for example in topic.examples %}
+                <li>{{ example }}</li>
+            {% endfor %}
+        </ul>
+
+        <!-- Sección de ejercicios -->
+        <h3>Ejercicios:</h3>
+        <ul class="list-unstyled">
+            {% for exercise in topic.exercises %}
+                <li>{{ exercise }}</li>
+            {% endfor %}
+        </ul>
+
+        <div>
+            {% if is_learned %}
+                <button class="btn btn-secondary disabled" disabled>¡Ya lo aprendiste!</button>
+            {% else %}
+                <form action="{% url 'mark_learned' topic_id %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Marcar como Aprendido</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Enlace a Bootstrap JS y dependencias (jQuery y Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

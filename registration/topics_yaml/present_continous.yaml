@@ -1,0 +1,34 @@
+quiz:
+  title: "Reforzamiento del Present Continuous"
+  description: "Ejercicios para practicar el uso del presente continuo en inglés."
+  questions:
+    - id: 1
+      question: "I ___ (study) for my exams."
+      correct_answer: "am studying"
+    - id: 2
+      question: "She ___ (cook) dinner."
+      correct_answer: "is cooking"
+    - id: 3
+      question: "He ___ (play) video games."
+      correct_answer: "is playing"
+    - id: 4
+      question: "They ___ (watch) a movie."
+      correct_answer: "are watching"
+    - id: 5
+      question: "We ___ (work) on a project."
+      correct_answer: "are working"
+    - id: 6
+      question: "The children ___ (play) outside."
+      correct_answer: "are playing"
+    - id: 7
+      question: "I ___ (read) a great book."
+      correct_answer: "am reading"
+    - id: 8
+      question: "She ___ (learn) Spanish."
+      correct_answer: "is learning"
+    - id: 9
+      question: "He ___ (fix) his bike."
+      correct_answer: "is fixing"
+    - id: 10
+      question: "We ___ (have) a great time."
+      correct_answer: "are having"

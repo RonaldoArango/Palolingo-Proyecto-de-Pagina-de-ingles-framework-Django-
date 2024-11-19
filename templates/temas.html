@@ -1,0 +1,171 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temas de Inglés</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRoc7bJB8ev3+klD2iihEn5/Cn1UKoaPhvRUh4fjk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/Inicio.css'%}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(45deg, #ff7e5f, #feb47b, #6a11cb, #2575fc, #d66a6a);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s ease infinite;
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+            color: white;
+        }
+
+        .topic-list {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+            padding-top: 80px;
+        }
+
+        .topic-list li {
+            margin-bottom: 20px; /* Aumenta el espacio entre los botones */
+        }
+
+        .topic-list a {
+            text-decoration: none;
+            padding: 15px 30px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 5px;
+            font-size: 1.2em;
+            font-weight: bold;
+            text-align: center;
+            width: 250px; /* Ajuste del ancho de los botones */
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: block; /* Hace que el enlace se comporte como bloque */
+            text-align: center;
+        }
+
+        .topic-list a:hover {
+            background-color: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .topic-list a:active {
+            background-color: #1c669d;
+        }
+
+        .loading-btn {
+            display: none;
+            padding: 10px;
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .loading-btn.active {
+            display: inline-block;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="../static/images/meme.jpg" alt="#" height=60px>
+            <a href="{% url 'home' %}" class="Logo">Palolingo</a>
+    
+            <input type="checkbox" id="menu-bar">
+            <label for="menu-bar">Menu</label>
+        </div>
+
+        <nav class="navbar" style="background-color: #f8f9fa; padding: 10px;">
+            <ul>
+                <li><a href="{% url 'temas' %}">Curso</a></li>
+                <li><a href="{% url 'foro' %}">Foro</a></li>
+                <li><a href="#">Recurso +</a>
+                    <ul>
+                        <li><a href="{% url 'correct_text' %}">Corrector de textos</a></li>
+                        <li><a href="{% url 'pagina' %}">Convertir de audio a texto</a></li>
+                        <li><a href="{% url 'input_word' %}">Diccionario</a></li>
+                    </ul>
+                </li>
+                <li></li>
+            </ul>
+        </nav>
+
+        <div class="usuario-info">
+            {% if user.socialaccount_set.exists %}
+                {% for social_account in user.socialaccount_set.all %}
+                    <img src="{{ social_account.get_avatar_url|default:'/path/to/default/avatar.png' }}" alt="Avatar" class="avatar-icon" style="width: 25px; height: 25px;">
+                {% endfor %}
+            {% endif %}
+            <span>Bienvenido, {{ user.username }}</span>
+            <span class="arrow" id="toggle-menu">▼</span> <!-- Flecha aquí -->
+            <div class="dropdown" id="dropdown" style="display:none;">
+                <button class="cerrar-sesion-button"><a href="{% url 'logout' %}" style="color: white; text-decoration: none;">Cerrar sesión</a></button>
+            </div>
+        </div>
+        
+        
+        
+    </header>
+    
+    <ul class="topic-list">
+        <h1>Temas de Inglés</h1>
+        <li>
+            <a href="{% url 'present_simple' %}" class="btn-link">Present Simple</a>
+        </li>
+        <li>
+            <a href="{% url 'past_simple' %}" class="btn-link">Past Simple</a>
+        </li>
+        <li>
+            <a href="{% url 'future_simple' %}" class="btn-link">Future Simple</a>
+        </li>
+        <li>
+            <a href="{% url 'present_continuous' %}" class="btn-link">Present Continuous</a>
+        </li>
+        <li>
+            <a href="{% url 'past_continuous' %}" class="btn-link">Past Continuous</a>
+        </li>
+    </ul>
+
+    <!-- Botón de carga, para efectos de AJAX -->
+    <button class="loading-btn" id="loadingBtn">Cargando...</button>
+
+    <script>
+        $(document).ready(function() {
+            // Añadir efecto de carga mientras se redirige
+            $('.btn-link').click(function(event) {
+                $('#loadingBtn').addClass('active');
+                setTimeout(function() {
+                    $('#loadingBtn').removeClass('active');
+                }, 3000); // 3 segundos de carga para simular la redirección
+            });
+        });
+    </script>
+
+</body>
+</html>
+

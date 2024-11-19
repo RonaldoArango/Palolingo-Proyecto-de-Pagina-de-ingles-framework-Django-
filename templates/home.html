@@ -1,0 +1,89 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/Inicio.css'%}">
+    <title>Palolingo:Inicio</title>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="../static/images/meme.jpg" alt="#" height=60px>
+            <a href="{% url 'home' %}" class="Logo">Palolingo</a>
+    
+            <input type="checkbox" id="menu-bar">
+            <label for="menu-bar">Menu</label>
+        </div>
+
+        <nav class="navbar" style="background-color: #f8f9fa; padding: 10px;">
+            <ul>
+                <li><a href="{% url 'temas' %}">Curso</a></li>
+                <li><a href="{% url 'foro' %}">Foro</a></li>
+                <li><a href="#">Recurso +</a>
+                    <ul>
+                        <li><a href="{% url 'correct_text' %}">Corrector de textos</a></li>
+                        <li><a href="{% url 'pagina' %}">Convertir de audio a texto</a></li>
+                        <li><a href="{% url 'input_word' %}">Diccionario</a></li>
+                    </ul>
+                </li>
+                <li></li>
+            </ul>
+        </nav>
+
+        <div class="usuario-info">
+            {% if user.socialaccount_set.exists %}
+                {% for social_account in user.socialaccount_set.all %}
+                    <img src="{{ social_account.get_avatar_url|default:'/path/to/default/avatar.png' }}" alt="Avatar" class="avatar-icon" style="width: 25px; height: 25px;">
+                {% endfor %}
+            {% endif %}
+            <span>Bienvenido, {{ user.username }}</span>
+            <span class="arrow" id="toggle-menu">▼</span> <!-- Flecha aquí -->
+            <div class="dropdown" id="dropdown" style="display:none;">
+                <button class="cerrar-sesion-button"><a href="{% url 'logout' %}" style="color: white; text-decoration: none;">Cerrar sesión</a></button>
+            </div>
+        </div>
+        
+        
+        
+    </header>
+    <main>
+        <div class="info">
+            <center>
+                <h1>Palolingo la escuela de ingles mas grande <br></h1>
+                <h3 class="Texto1">La zona de aprendizaje de ingles mas versatil que <br> encontraras miles de estudiantes nos aprueban <br>¿Que esperas para empezar? </h3>
+                <button class="LoginButton">Únetenos</button>
+                <h3 class="Texto2">!Empieza nuestro curso sin costo <br>y mejora tu ingles!</h3>
+            </center>
+        </div>
+    </main>
+
+    <article>
+        <div class="ventajas">
+            <ul>
+                <h1>Con palolingo sentiras el cambio:</h1>
+                <li>Aprovecha nuestro diccionario para aprender mas palabras</li>
+                <li>¿Quieres corregir tus textos? Aqui tu podras :D</li>
+                <li>¿Te trabas al hablar? Aqui podras mandar tu audio y <br>te dira en que te equivocaste</li>
+                <li>¿Quieres postular a un trabajo? Con palolingo podras tomarb <br> un examen de simulacion para ver como te desenvuelves en <br>esa situacion</li>
+                <li>Avanza en nuestro curso y mide tu progeso</li>
+            </ul>
+    </div>
+    </article>
+
+    <section>
+        <div class="test">
+            <center>
+                <h1>Sabiendo esto que esperas a pertenecer a Palolingo?</h1>
+                <h3>Toma nuestro examen para saber tu nivel de ingles y <br>continues tu nueva aventura con nosotros</h3>
+                <a href="{% url 'start' %}">
+                    <button>Tomar test de clasificación</button>
+                </a>
+            </center>
+        </div>
+    </section>
+
+    <script src="{% static 'js/java.js' %}"></script>
+</body>
+</html>
